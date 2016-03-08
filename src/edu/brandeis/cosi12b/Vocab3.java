@@ -6,7 +6,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Scanner;
 
-public class Vocab2 {
+public class Vocab3 {
   ArrayList<String> list1;
   ArrayList<String> list2;
   ArrayList<String> dups;
@@ -25,16 +25,22 @@ public class Vocab2 {
     dups = getOverlap(list1, list2);
   }
 
-  public void printoutLists() {
-    System.out.println("list1 = " + list1);
-    System.out.println("list2 = " + list2);
-    System.out.println("Dups = " + dups);
+  public void reportResults() {
+    System.out.println("file #1 words = " + list1.size());
+    System.out.println("file #2 words = " + list2.size());
+    System.out.println("common words  = " + dups.size());
+    System.out.println();
+    double percent1 = 100.0 * dups.size() / list1.size();
+    double percent2 = 100.0 * dups.size() / list2.size();
+    System.out.printf("%% of file 1 in overlap = %.2f%%%n", percent1);
+    System.out.printf("%% of file 2 in overlap = %.2f%%", percent2);
   }
 
   /*
    * Read the words, put them in a list and sort them
    */
   public ArrayList<String> getWords(Scanner input) {
+    input.useDelimiter("[^a-zA-Z’]+");
     ArrayList<String> words = new ArrayList<String>();
     while (input.hasNext()) {
       String next = input.next().toLowerCase();
@@ -61,7 +67,6 @@ public class Vocab2 {
     return result;
   }
   
-
   public ArrayList<String> getOverlap(ArrayList<String> list1, ArrayList<String> list2) {
     ArrayList<String> result = new ArrayList<String>();
     int index1 = 0;
@@ -85,3 +90,4 @@ public class Vocab2 {
   
 
 }
+
