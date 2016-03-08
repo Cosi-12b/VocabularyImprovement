@@ -11,6 +11,7 @@ public class Vocab3 {
   ArrayList<String> list2;
   ArrayList<String> dups;
   
+  // Read the two files and load up list1 and list2 with the words found there
   public void readFiles() throws FileNotFoundException {
     Scanner input1 = new Scanner(new File("test1.txt"));
     Scanner input2 = new Scanner(new File("test2.txt"));
@@ -37,7 +38,8 @@ public class Vocab3 {
   }
 
   /*
-   * Read the words, put them in a list and sort them
+   * Read the words, put them in a list and sort them. Skip non alpha
+   * characters as delimiters. Sort the resultant list.
    */
   public ArrayList<String> getWords(Scanner input) {
     input.useDelimiter("[^a-zA-Z’]+");
@@ -51,7 +53,8 @@ public class Vocab3 {
   }
 
   /*
-   * Remove list which is copy of old list minus dups
+   * Return new list which is input list without duplicates.
+   * Assumes that the list is sorted.
    */
   public ArrayList<String> removeDups(ArrayList<String> words) {
     ArrayList<String> result = new ArrayList<String>();
@@ -67,6 +70,9 @@ public class Vocab3 {
     return result;
   }
   
+  /*
+   * Given two lists, create a new list which is only the words found in both lists.
+   */
   public ArrayList<String> getOverlap(ArrayList<String> list1, ArrayList<String> list2) {
     ArrayList<String> result = new ArrayList<String>();
     int index1 = 0;
